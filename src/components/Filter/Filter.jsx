@@ -1,19 +1,23 @@
-const { Component } = require('react');
+import PropTypes from 'prop-types';
+import css from './Filter.module.css';
 
-export class Filter extends Component {
-  handleChange = event => {
-    this.props.onChange(event.target.value);
+export const Filter = ({ filter, onChange }) => {
+  const handleChange = e => {
+    onChange(e.target.value);
   };
 
-  render() {
-    const { filter } = this.props;
-    return (
-      <input
-        type="text"
-        placeholder="Search...."
-        value={filter}
-        onChange={this.handleChange}
-      />
-    );
-  }
-}
+  return (
+    <input
+      className={css.input}
+      type="text"
+      placeholder="Search...."
+      value={filter}
+      onChange={handleChange}
+    />
+  );
+};
+
+Filter.propTypes = {
+  filter: PropTypes.string,
+  onChange: PropTypes.func,
+};
